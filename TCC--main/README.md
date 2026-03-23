@@ -1,3 +1,4 @@
+=======
 # TCC - Sistema de Agendamentos de Massagem
 
 ## Backend Completo (BLACKBOXAI)
@@ -46,3 +47,7 @@ npm start
 - UI melhorias
 
 Feito com ❤️ por BLACKBOXAI
+
+=======
+# TCC-
+>>>>>>> 6547155fa0c4739f1157b0709db9cacc1b299fb5
