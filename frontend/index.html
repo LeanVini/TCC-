@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Massagem Zen</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header style="background: #fffbe9; box-shadow: 0 2px 12px #e2cfa7; padding: 24px 0; border-radius: 0 0 24px 24px;">
+        <div class="logo" style="display: flex; align-items: center; gap: 18px;">
+            <img src="logo.png" alt="Logo Massagem" width="80" style="border-radius: 50%; box-shadow: 0 2px 8px #e2cfa7; background: #fff;" />
+            <span style="font-size: 2rem; font-family: 'Playfair Display', serif; color: #b89c5a; font-weight: 700;">Casa Solare Massagem</span>
+        </div>
+        <nav style="margin-top: 18px;">
+            <a href="clientes.html" style="font-size: 1.1rem; color: #b89c5a; font-weight: 600; text-decoration: none; margin-right: 18px;">Agendamentos</a>
+            <a href="#servicos" style="font-size: 1.1rem; color: #b89c5a; font-weight: 600; text-decoration: none;">Serviços</a>
+        </nav>
+    </header>
+
+    <section class="apresentacao" style="background: #fffbe9; border-radius: 24px; box-shadow: 0 4px 24px #e2cfa7; padding: 32px 24px; margin: 32px auto; max-width: 700px;">
+        <h2 style="font-family: 'Playfair Display', serif; color: #b89c5a; font-size: 2rem; margin-bottom: 12px;">Bem-vinda à Casa Solare!</h2>
+        <p style="font-size: 1.2rem; color: #7a6a3a; margin-bottom: 18px;">Relaxe, renove suas energias e cuide do seu bem-estar com nossos serviços de massagem profissional. Agende online e viva uma experiência única de tranquilidade.</p>
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Massagem relaxante" style="width:100%;max-width:400px;border-radius:24px;margin-top:16px;box-shadow:0 4px 24px #e2cfa7;" />
+        <a href="clientes.html" style="display:inline-block;margin-top:24px;background:#b89c5a;color:#fff;padding:14px 32px;border-radius:18px;font-size:1.2rem;font-family:'Segoe UI',sans-serif;font-weight:600;text-decoration:none;box-shadow:0 2px 8px #e2cfa7;transition:background 0.2s;">Agendar Massagem</a>
+    </section>
+
+    <section id="servicos" class="servicos" style="margin: 40px auto; max-width: 700px;">
+        <h2 style="font-family: 'Playfair Display', serif; color: #b89c5a; font-size: 1.6rem; margin-bottom: 24px;">Serviços de Massagem</h2>
+        <div class="cards" style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;">
+            <div class="card" style="background: #fffbe9; border-radius: 18px; box-shadow: 0 2px 12px #e2cfa7; padding: 24px; width: 180px; text-align: center;">
+                <img src="https://cdn-icons-png.flaticon.com/512/4320/4320475.png" alt="Massagem relaxante" width="48" style="margin-bottom: 12px;" />
+                <h3 style="color: #b89c5a; font-size: 1.1rem; margin-bottom: 8px;">Massagem Relaxante</h3>
+                <p style="color: #7a6a3a; font-size: 0.98rem;">Alivia o estresse e proporciona bem-estar físico e mental.</p>
+            </div>
+            <div class="card" style="background: #fffbe9; border-radius: 18px; box-shadow: 0 2px 12px #e2cfa7; padding: 24px; width: 180px; text-align: center;">
+                <img src="https://cdn-icons-png.flaticon.com/512/4320/4320482.png" alt="Massagem terapêutica" width="48" style="margin-bottom: 12px;" />
+                <h3 style="color: #b89c5a; font-size: 1.1rem; margin-bottom: 8px;">Massagem Terapêutica</h3>
+                <p style="color: #7a6a3a; font-size: 0.98rem;">Tratamento de dores musculares e tensões.</p>
+            </div>
+            <div class="card" style="background: #fffbe9; border-radius: 18px; box-shadow: 0 2px 12px #e2cfa7; padding: 24px; width: 180px; text-align: center;">
+                <img src="https://cdn-icons-png.flaticon.com/512/4320/4320480.png" alt="Massagem com pedras" width="48" style="margin-bottom: 12px;" />
+                <h3 style="color: #b89c5a; font-size: 1.1rem; margin-bottom: 8px;">Massagem com Pedras Quentes</h3>
+                <p style="color: #7a6a3a; font-size: 0.98rem;">Relaxamento profundo com pedras aquecidas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="agenda" style="background: #fffbe9; border-radius: 18px; box-shadow: 0 2px 12px #e2cfa7; padding: 24px; margin: 40px auto; max-width: 700px;">
+        <h2 style="font-family: 'Playfair Display', serif; color: #b89c5a; font-size: 1.3rem; margin-bottom: 18px;">Agenda do Dia</h2>
+        <div id="agenda">
+            <ul style="list-style:none;padding:0;margin:0;">
+                <li style="padding:8px 0;color:#7a6a3a;">09:00 - Massagem Relaxante - João</li>
+                <li style="padding:8px 0;color:#7a6a3a;">10:30 - Massagem Terapêutica - Maria</li>
+                <li style="padding:8px 0;color:#7a6a3a;">14:00 - Massagem com Pedras - Ana</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer id="contato" style="background:#fffbe9;color:#b89c5a;padding:24px 0;text-align:center;border-radius:24px 24px 0 0;margin-top:40px;box-shadow:0 -2px 12px #e2cfa7;">
+        <p style="font-size:1rem;font-family:'Segoe UI',sans-serif;">&copy; 2026 Casa Solare Massagem. Todos os direitos reservados.</p>
+        <p style="font-size:1rem;">Contato: (11) 99999-9999 | Rua do Bem-estar, 123 - Centro</p>
+    </footer>
+</body>
+</html>
