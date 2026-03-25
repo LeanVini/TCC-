@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const API_BASE = '/api';
 const STORAGE_KEY = 'clientes-cache'; // Fallback cache
 
@@ -117,48 +116,6 @@ const renderClientes = (clientes = [], searchTerm = '') => {
       <td class="acoes">
         <button class="btn-edit" data-id="${cliente.id}">Editar</button>
         <button class="btn-remover" data-id="${cliente.id}">Remover</button>
-=======
-const STORAGE_KEY = "clientes";
-
-function getClientes() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  return raw ? JSON.parse(raw) : [];
-}
-
-function saveClientes(clientes) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(clientes));
-}
-
-function formatTelefone(tel) {
-  if (!tel) return "";
-  // Simple formatting: keep digits and group
-  const digits = tel.replace(/\D/g, "");
-  if (digits.length === 11) return digits.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-  if (digits.length === 10) return digits.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
-  return tel;
-}
-
-function renderClientes() {
-  const clientes = getClientes();
-  const tbody = document.querySelector("#listaClientes tbody");
-  tbody.innerHTML = "";
-
-  if (!clientes.length) {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td colspan="4" style="text-align:center; opacity:0.7;">Nenhum cliente cadastrado ainda.</td>`;
-    tbody.appendChild(tr);
-    return;
-  }
-
-  clientes.forEach((cliente) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${cliente.nome}</td>
-      <td>${formatTelefone(cliente.telefone)}</td>
-      <td>${cliente.email}</td>
-      <td>
-        <button type="button" class="btn-remover" data-id="${cliente.id}">Remover</button>
->>>>>>> 7a42470e9cbd13f0240a3c6cbbdb5217bda6277d
       </td>
     `;
     tbody.appendChild(tr);

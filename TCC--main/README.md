@@ -1,7 +1,7 @@
 =======
 # TCC - Sistema de Agendamentos de Massagem
 
-## Backend Completo (BLACKBOXAI)
+## Backend Completo 
 
 ### 🚀 Rodar com Docker (Recomendado)
 ```bash
@@ -46,11 +46,6 @@ npm start
 - Migrar localStorage para /api/clientes no clientes.js
 - UI melhorias
 
-<<<<<<< HEAD
-=======
-Feito com ❤️ por BLACKBOXAI
-
->>>>>>> 7a42470e9cbd13f0240a3c6cbbdb5217bda6277d
 =======
 # TCC-
->>>>>>> 6547155fa0c4739f1157b0709db9cacc1b299fb5
+
