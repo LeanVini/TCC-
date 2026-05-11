@@ -1,4 +1,21 @@
 const API_BASE = '/api';
+const ADMIN_LOGIN_KEY = 'agenda_admin_logged';
+const isAdminLogged = () => localStorage.getItem(ADMIN_LOGIN_KEY) === 'true';
+const requireAdminLogin = () => {
+    if (!isAdminLogged()) {
+        const next = encodeURIComponent(window.location.pathname);
+        window.location.href = `login.html?next=${next}`;
+    }
+};
+window.logoutAdmin = () => {
+    localStorage.removeItem(ADMIN_LOGIN_KEY);
+    window.location.href = 'login.html';
+};
+
+if (window.location.pathname.endsWith('agendamentos.html')) {
+    requireAdminLogin();
+}
+
 let clientesCache = [];
 let servicosCache = [];
 let agendamentosCache = [];

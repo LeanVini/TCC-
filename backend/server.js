@@ -82,6 +82,9 @@ const resolveServicoId = async (conn, body) => {
     return result.insertId;
 };
 
+const ADMIN_USER = process.env.ADMIN_USER || 'admin';
+const ADMIN_PASS = process.env.ADMIN_PASS || 'admin123';
+
 app.get('/health', async (req, res) => {
     try {
         const connection = await pool.getConnection();
@@ -90,6 +93,26 @@ app.get('/health', async (req, res) => {
         res.json({ status: 'OK', db: 'connected' });
     } catch (err) {
         res.status(500).json({ status: 'Error', db: 'disconnected' });
+    }
+});
+
+app.post('/api/login', (req, res) => {
+    try {
+        console.log('POST /api/login recebido:', req.body);
+        const { username, password } = req.body || {};
+        if (!username || !password) {
+            return res.status(400).json({ error: 'Usuário e senha são obrigatórios.' });
+        }
+        console.log(`Verificando: ${username} === ${ADMIN_USER} && ${password} === ${ADMIN_PASS}`);
+        if (username === ADMIN_USER && password === ADMIN_PASS) {
+            console.log('Login bem-sucedido');
+            return res.json({ success: true });
+        }
+        console.log('Credenciais inválidas');
+        return res.status(401).json({ error: 'Credenciais inválidas.' });
+    } catch (err) {
+        console.error('Erro em /api/login:', err);
+        return res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
 

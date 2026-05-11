@@ -1,4 +1,11 @@
 {
+  "name": "agenda-massagem",
+  "private": true,
+  "scripts": {
+    "start": "cd backend && npm start",
+    "backend": "cd backend && npm start",
+    "backend:dev": "cd backend && npm run dev"
+  },
   "dependencies": {
     "sqlite3": "^6.0.1"
   }

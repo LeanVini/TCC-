@@ -9,7 +9,10 @@
 </head>
 <body>
     <header class="page-header">
-        <h1 class="page-title">Agendamentos & Clientes</h1>
+        <div class="page-header-top">
+            <h1 class="page-title">Agendamentos & Clientes</h1>
+            <button id="logoutButton" type="button" class="btn btn-danger" onclick="logoutAdmin()">Sair</button>
+        </div>
         <div class="page-tabs">
             <a href="#clientes" class="tab-button active" onclick="showTab(event, 'clientes')">👥 Clientes</a>
             <a href="#agendamentos" class="tab-button" onclick="showTab(event, 'agendamentos')">📅 Agendamentos</a>
