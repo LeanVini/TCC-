@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Marta Caires</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="page-header">
+        <div class="page-header-top">
+            <h1 class="page-title">Painel Administrativo</h1>
+            <button id="logoutButton" type="button" class="btn btn-danger" onclick="logoutAdmin()">Sair</button>
+        </div>
+        <p class="admin-note">Área exclusiva do administrador. Gerencie clientes e agendamentos com facilidade nesta tela.</p>
+    </header>
+
+    <div class="container">
+        <section id="agendamentos" class="content-section section-card agendamento-section active">
+            <div class="section-toolbar">
+                <div class="search-group">
+                    <input id="searchInput" type="search" class="form-input" placeholder="Buscar por cliente, massagem ou data">
+                </div>
+            </div>
+
+            <h2 class="section-title">Agendamentos dos clientes</h2>
+            <table id="listaAgendamentos" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Massagem</th>
+                        <th>Cliente</th>
+                        <th>Email</th>
+                        <th>Observações</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
+
+    <div id="messageBox" class="message-box" style="display:none;"></div>
+    <script src="js/app.js"></script>
+</body>
+</html>

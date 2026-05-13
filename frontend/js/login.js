@@ -3,7 +3,7 @@ const ADMIN_LOGIN_KEY = 'agenda_admin_logged';
 const isAdminLogged = () => localStorage.getItem(ADMIN_LOGIN_KEY) === 'true';
 const getReturnUrl = () => {
     const params = new URLSearchParams(window.location.search);
-    return params.get('next') || 'agendamentos.html';
+    return params.get('next') || 'admin.html';
 };
 
 if (isAdminLogged()) {

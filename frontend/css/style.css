@@ -259,6 +259,14 @@ footer {
     color: #9d7a33;
 }
 
+.admin-note {
+    margin: 0.8rem 0 0;
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.98rem;
+    opacity: 0.95;
+}
+
 .page-tabs {
     display: inline-flex;
     background: rgba(212, 175, 55, 0.12);
@@ -439,6 +447,15 @@ footer {
     line-height: 1.5;
 }
 
+.login-footer {
+    margin-top: 1.3rem;
+    text-align: center;
+}
+
+.login-footer .cta-secondary {
+    padding: 0.85rem 1.4rem;
+}
+
 .page-header-top {
     display: flex;
     align-items: center;
@@ -481,6 +498,13 @@ footer {
 
 .data-table tr:hover {
     background: rgba(212, 175, 55, 0.05);
+}
+
+.date-group-row td {
+    background: rgba(212, 175, 55, 0.14);
+    font-weight: 700;
+    color: var(--primary-dark);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.18);
 }
 
 .action-buttons {
