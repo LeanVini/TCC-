@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabela = document.querySelector('#listaAgendamentos tbody');
     const selectTipo = document.getElementById('tipo_massagem');
     const messageBox = document.getElementById('messageBox');
+    const agendamentoId = document.getElementById('agendamento_id');
+    const cancelEditButton = document.getElementById('cancelEdit');
 
     const formatTelefone = (tel) => {
         if (!tel) return '';
@@ -62,6 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>${ag.cliente_nome || '—'}</td>
                     <td>${ag.cliente_email || ''}</td>
                     <td>${ag.observacoes || ''}</td>
+                    <td class="action-buttons">
+                        <button type="button" class="btn btn-secondary btn-edit" data-id="${ag.id}">Editar</button>
+                    </td>
                 `;
                 tabela.appendChild(tr);
             });
@@ -97,9 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
             observacoes
         };
 
+        const isEdit = agendamentoId.value.trim() !== '';
+        const method = isEdit ? 'PUT' : 'POST';
+        const url = isEdit ? `/api/agendamentos/${agendamentoId.value}` : '/api/agendamentos';
+
         try {
-            const res = await fetch('/api/agendamentos', {
-                method: 'POST',
+            const res = await fetch(url, {
+                method,
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
@@ -108,12 +117,49 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(error.error || 'Erro ao enviar agendamento.');
             }
             form.reset();
-            showMessage('Agendamento enviado com sucesso!', 'info');
+            agendamentoId.value = '';
+            showMessage(isEdit ? 'Agendamento atualizado com sucesso!' : 'Agendamento enviado com sucesso!', 'info');
             carregarAgendamentos();
         } catch (err) {
             console.error('Erro ao salvar agendamento:', err);
             showMessage(err.message, 'error');
         }
+    });
+
+    const preencherFormulario = (agendamento) => {
+        agendamentoId.value = agendamento.id;
+        document.getElementById('data').value = agendamento.data;
+        document.getElementById('hora').value = agendamento.hora;
+        selectTipo.value = agendamento.servico_id || agendamento.tipo_massagem || '';
+        document.getElementById('cliente_nome').value = agendamento.cliente_nome || '';
+        document.getElementById('cliente_telefone').value = agendamento.cliente_telefone || '';
+        document.getElementById('cliente_email').value = agendamento.cliente_email || '';
+        document.getElementById('observacoes').value = agendamento.observacoes || '';
+        showMessage('Modo edição ativado. Altere data ou horário e salve.', 'info');
+    };
+
+    tabela.addEventListener('click', async (event) => {
+        const editButton = event.target.closest('.btn-edit');
+        if (!editButton) return;
+
+        const id = editButton.dataset.id;
+        if (!id) return;
+
+        try {
+            const res = await fetch(`/api/agendamentos/${id}`);
+            if (!res.ok) throw new Error('Não foi possível carregar o agendamento.');
+            const agendamento = await res.json();
+            preencherFormulario(agendamento);
+        } catch (err) {
+            console.error('Erro ao carregar agendamento para edição:', err);
+            showMessage(err.message, 'error');
+        }
+    });
+
+    cancelEditButton.addEventListener('click', () => {
+        form.reset();
+        agendamentoId.value = '';
+        showMessage('Edição cancelada.', 'info');
     });
 
     carregarServicos();

@@ -507,6 +507,79 @@ footer {
     border-bottom: 1px solid rgba(212, 175, 55, 0.18);
 }
 
+.today-panel {
+    margin-bottom: 1.8rem;
+    padding: 1.25rem 1.4rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: var(--shadow);
+}
+
+.today-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.today-panel-header h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--text);
+}
+
+.refresh-status {
+    color: var(--muted);
+    font-size: 0.94rem;
+}
+
+.today-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.today-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.today-time {
+    font-weight: 700;
+    color: var(--primary-dark);
+    min-width: 74px;
+}
+
+.today-info strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.today-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.today-info small {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.today-empty {
+    margin: 0;
+    color: var(--muted);
+}
+
 .action-buttons {
     display: flex;
     gap: 0.5rem;
@@ -523,6 +596,13 @@ footer {
 }
 
 .btn-primary { background: var(--primary); }
+.btn-secondary {
+    background: rgba(212, 175, 55, 0.25);
+    color: #5d4e3a;
+}
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.35);
+}
 .btn-danger { background: #EF5B5B; }
 
 .loading {

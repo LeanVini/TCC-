@@ -1,5 +1,6 @@
 const API_BASE = '/api';
 const ADMIN_LOGIN_KEY = 'agenda_admin_logged';
+const REFRESH_INTERVAL_MS = 15000;
 const isAdminLogged = () => localStorage.getItem(ADMIN_LOGIN_KEY) === 'true';
 const requireAdminLogin = () => {
     if (!isAdminLogged()) {
@@ -18,12 +19,54 @@ if (window.location.pathname.endsWith('admin.html')) {
 
 const agendaBody = document.querySelector('#listaAgendamentos tbody');
 const searchInput = document.getElementById('searchInput');
+const todayPanel = document.getElementById('todayList');
+const todayStatus = document.getElementById('todayRefreshStatus');
 let agendamentosCache = [];
+let refreshTimer = null;
+let isRefreshing = false;
 
 const formatDateLabel = (dateStr) => {
     if (!dateStr) return 'Data indefinida';
     const date = new Date(`${dateStr}T00:00:00`);
     return date.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
+};
+
+const getTodayDateKey = () => {
+    const now = new Date();
+    return now.toISOString().split('T')[0];
+};
+
+const updateRefreshStatus = (loading = false) => {
+    if (!todayStatus) return;
+    if (loading) {
+        todayStatus.textContent = 'Atualizando...';
+        return;
+    }
+    const time = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    todayStatus.textContent = `Última atualização: ${time}`;
+};
+
+const renderTodaySummary = () => {
+    if (!todayPanel) return;
+    const todayKey = getTodayDateKey();
+    const todayItems = agendamentosCache
+        .filter(item => item.data === todayKey)
+        .sort((a, b) => a.hora.localeCompare(b.hora));
+
+    if (!todayItems.length) {
+        todayPanel.innerHTML = '<p class="today-empty">Nenhum agendamento para hoje.</p>';
+        return;
+    }
+
+    todayPanel.innerHTML = todayItems.map(item => `
+        <article class="today-item">
+            <div class="today-time">${item.hora}</div>
+            <div class="today-info">
+                <strong>${item.servico_nome || item.tipo_massagem || '—'}</strong>
+                <p>${item.cliente_nome || '—'} <small>${item.cliente_email || ''}</small></p>
+            </div>
+        </article>
+    `).join('');
 };
 
 const showMessage = (text, type = 'info') => {
@@ -50,13 +93,29 @@ const apiCall = async (endpoint, options = {}) => {
 };
 
 const loadAgendamentos = async () => {
+    if (isRefreshing) return;
+    isRefreshing = true;
+    updateRefreshStatus(true);
+
     try {
         agendamentosCache = await apiCall('/agendamentos');
     } catch (err) {
         agendamentosCache = [];
         showMessage('Não foi possível carregar agendamentos.', 'error');
+    } finally {
+        renderAgendamentos();
+        renderTodaySummary();
+        updateRefreshStatus(false);
+        isRefreshing = false;
     }
-    renderAgendamentos();
+};
+
+const startAutoRefresh = () => {
+    if (refreshTimer) clearInterval(refreshTimer);
+    refreshTimer = setInterval(async () => {
+        if (isRefreshing) return;
+        await loadAgendamentos();
+    }, REFRESH_INTERVAL_MS);
 };
 
 const renderAgendamentos = () => {
@@ -144,4 +203,5 @@ const debounce = (fn, delay) => {
 window.addEventListener('DOMContentLoaded', async () => {
     setupEvents();
     await loadAgendamentos();
+    startAutoRefresh();
 });
