@@ -45,13 +45,13 @@ echo ============================================
 echo           SISTEMA PRONTO!
 echo ============================================
 echo.
-echo 🌐 Frontend + API: http://localhost:3000
-echo 📊 Agendamentos:   http://localhost:3000/agendamentos.html
+echo 🌐 Frontend: http://localhost:8080
+echo 📊 Agendamentos:   http://localhost:8080/agendamentos.html
 echo 💚 Health Check:   http://localhost:3000/health
-echo 🗄️  MySQL:         localhost:3307 (root/password)
+echo 🗄️  MySQL:         localhost:3307 (root / senha em .env)
 echo.
 echo 📋 Para apresentar:
-echo 1. Abra http://localhost:3000 no navegador
+echo 1. Abra http://localhost:8080 no navegador
 echo 2. Navegue para "Agendar" ou diretamente para agendamentos.html
 echo 3. Demonstre criação de clientes e agendamentos
 echo.

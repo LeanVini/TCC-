@@ -7,8 +7,10 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'http://localhost:8080';
 
-app.use(cors());
+app.disable('x-powered-by');
+app.use(cors({ origin: ALLOWED_ORIGIN }));
 app.use(express.json({ limit: '10mb' }));
 // Serve static files from frontend directory
 const frontendPath = path.resolve(__dirname, '../frontend');
@@ -98,12 +100,11 @@ app.get('/health', async (req, res) => {
 
 app.post('/api/login', (req, res) => {
     try {
-        console.log('POST /api/login recebido:', req.body);
+        console.log('POST /api/login recebido');
         const { username, password } = req.body || {};
         if (!username || !password) {
             return res.status(400).json({ error: 'Usuário e senha são obrigatórios.' });
         }
-        console.log(`Verificando: ${username} === ${ADMIN_USER} && ${password} === ${ADMIN_PASS}`);
         if (username === ADMIN_USER && password === ADMIN_PASS) {
             console.log('Login bem-sucedido');
             return res.json({ success: true });

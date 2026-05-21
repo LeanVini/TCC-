@@ -50,6 +50,15 @@ if %errorlevel% equ 0 (
     echo ✅ Porta 3000 disponível
 )
 
+echo.
+netstat -an | find "8080" >nul
+if %errorlevel% equ 0 (
+    echo ⚠️  AVISO: Porta 8080 já em uso (pode estar OK se sistema já rodando)
+) else (
+    echo ✅ Porta 8080 disponível
+)
+
+echo.
 netstat -an | find "3307" >nul
 if %errorlevel% equ 0 (
     echo ⚠️  AVISO: Porta 3307 já em uso (pode estar OK se MySQL já rodando)

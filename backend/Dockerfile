@@ -1,17 +1,21 @@
-FROM node:20-slim
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files
+RUN apk add --no-cache bash \
+    && addgroup -S appgroup \
+    && adduser -S appuser -G appgroup \
+    && mkdir -p /app
+
 COPY package*.json ./
 
-# Install deps
 RUN npm install --only=production && npm cache clean --force
 
-# Copy source
 COPY . .
+RUN chown -R appuser:appgroup /app
 
-# Health check
+USER appuser
+
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"
 

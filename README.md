@@ -67,6 +67,10 @@ verificar-sistema.bat
 # Navegar para o diretório do projeto
 cd TCC
 
+# Copiar variáveis de ambiente locais
+# Renomeie e altere os valores em .env antes de subir o stack
+copy .env.example .env
+
 # Iniciar todos os serviços (Backend + Banco + Frontend)
 docker compose up -d --build
 
@@ -84,14 +88,14 @@ docker compose logs -f backend
 ```
 
 #### 3. **Acesso ao Sistema**
-- **URL Principal**: Diretório: C:\Users\vinic\Downloads\TCC\TCC-\TCC--main
-- **Página Inicial**: http://localhost:3000/index.html
-- **Sistema de Agendamentos**: http://localhost:3000/agendamentos.html
+- **URL Principal**: http://localhost:8080/
+- **Página Inicial**: http://localhost:8080/index.html
+- **Sistema de Agendamentos**: http://localhost:8080/agendamentos.html
 
 #### 4. **Demonstração das Funcionalidades**
 
 ##### **A) Gerenciamento de Clientes**
-1. Acesse: http://localhost:3000/agendamentos.html
+1. Acesse: http://localhost:8080/agendamentos.html
 2. Clique na aba "👥 Clientes"
 3. **Criar Cliente**:
    - Nome: "João Silva"
@@ -195,6 +199,9 @@ docker compose ps
 # Ver logs em tempo real
 docker compose logs -f
 
+# Ver healthchecks
+docker compose ps
+
 # Reiniciar serviços
 docker compose restart
 
@@ -205,7 +212,15 @@ docker compose down
 docker compose down -v
 ```
 
-#### 9. **Possíveis Demonstrações Avançadas**
+#### 9. **Evidência para Avaliação**
+- URL funcional: `http://localhost:8080`
+- Comprovante de end-to-end: frontend + backend + banco
+- Healthchecks e start_period: configurados em Dockerfiles e Compose
+- Logs de status saudável: `docker compose ps` e `docker compose logs -f backend`
+- Arquivo de User Data: `user-data.sh`
+- Arquivo de exemplo de variáveis seguras: `.env.example`
+
+#### 10. **Possíveis Demonstrações Avançadas**
 - **Teste de Stress**: Criar múltiplos agendamentos
 - **Validação**: Tentar criar dados inválidos
 - **Busca**: Demonstrar filtros de busca
@@ -243,11 +258,13 @@ O sistema demonstra:
 ### 🚀 Rodar com Docker (Recomendado)
 ```bash
 cd TCC
+cp .env.example .env
 docker compose up -d --build
 ```
-- **Frontend + API**: http://localhost:3000
-- **Health Check**: http://localhost:3000/health
-- **MySQL**: localhost:3307 | root/password | DB: agenda_massagem
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:3000
+- **Health Check API**: http://localhost:3000/health
+- **MySQL**: localhost:3307 | root (via .env) | DB: agenda_massagem
 - **Logs**: `docker compose logs -f backend`
 
 ### Estrutura

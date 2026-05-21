@@ -72,13 +72,13 @@ Write-Host "============================================" -ForegroundColor Green
 Write-Host "           SISTEMA PRONTO!" -ForegroundColor Green
 Write-Host "============================================" -ForegroundColor Green
 Write-Host ""
-Write-Host "🌐 Frontend + API: http://localhost:3000" -ForegroundColor Cyan
-Write-Host "📊 Agendamentos:   http://localhost:3000/agendamentos.html" -ForegroundColor Cyan
+Write-Host "🌐 Frontend: http://localhost:8080" -ForegroundColor Cyan
+Write-Host "📊 Agendamentos:   http://localhost:8080/agendamentos.html" -ForegroundColor Cyan
 Write-Host "💚 Health Check:   http://localhost:3000/health" -ForegroundColor Cyan
-Write-Host "🗄️  MySQL:         localhost:3307 (root/password)" -ForegroundColor Cyan
+Write-Host "🗄️  MySQL:         localhost:3307 (root / senha em .env)" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "📋 FLUXO DE APRESENTAÇÃO:" -ForegroundColor Yellow
-Write-Host "1. Abra http://localhost:3000 no navegador" -ForegroundColor White
+Write-Host "1. Abra http://localhost:8080 no navegador" -ForegroundColor White
 Write-Host "2. Navegue para 'Agendar' ou acesse agendamentos.html" -ForegroundColor White
 Write-Host "3. Demonstre:" -ForegroundColor White
 Write-Host "   - Criar cliente (aba Clientes)" -ForegroundColor White
