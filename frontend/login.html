@@ -3,29 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - Marta Caires</title>
+    <title>Login - Marta Caires</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="login-page">
     <main class="container">
-        <section class="login-card">
+        <section class="login-card login-multi-card">
             <div class="login-header">
-                <h1>Login Administrador</h1>
-                <p>Acesso exclusivo para o administrador. Faça login para ver, editar e excluir os agendamentos dos clientes.</p>
+                <h1>Bem-vindo</h1>
+                <p>Faça login como cliente para agendar ou como administrador para gerenciar os agendamentos.</p>
             </div>
-            <form id="loginForm" class="form-grid">
-                <div class="form-group">
-                    <label class="form-label" for="username">Usuário</label>
-                    <input type="text" id="username" class="form-input" autocomplete="username" required>
+
+            <div class="login-sections">
+                <div class="login-section">
+                    <h2>Cliente</h2>
+                    <p>Use seu e-mail e telefone para entrar. Caso não exista, sua conta será criada automaticamente.</p>
+                    <form id="clientLoginForm" class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="client_nome">Nome (opcional)</label>
+                            <input type="text" id="client_nome" class="form-input" autocomplete="name" placeholder="Seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="client_email">Email</label>
+                            <input type="email" id="client_email" class="form-input" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="client_telefone">Telefone</label>
+                            <input type="tel" id="client_telefone" class="form-input" autocomplete="tel" required>
+                        </div>
+                        <button type="submit" class="form-submit">Entrar ou Criar Conta</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="password">Senha</label>
-                    <input type="password" id="password" class="form-input" autocomplete="current-password" required>
+
+                <div class="login-section">
+                    <h2>Administrador</h2>
+                    <p>Faça login com suas credenciais de administrador para acessar o painel.</p>
+                    <form id="adminLoginForm" class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="username">Usuário</label>
+                            <input type="text" id="username" class="form-input" autocomplete="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="password">Senha</label>
+                            <input type="password" id="password" class="form-input" autocomplete="current-password" required>
+                        </div>
+                        <button type="submit" class="form-submit">Entrar como Admin</button>
+                    </form>
+                    <p class="login-note">Usuário padrão: <strong>admin</strong> / Senha padrão: <strong>admin123</strong></p>
                 </div>
-                <button type="submit" class="form-submit">Entrar</button>
-            </form>
+            </div>
+
             <div id="loginMessage" class="message-box" style="display:none;"></div>
-            <p class="login-note">Usuário padrão: <strong>admin</strong> / Senha padrão: <strong>admin123</strong></p>
             <div class="login-footer">
                 <a href="index.html" class="cta-secondary">Voltar para a página inicial</a>
             </div>

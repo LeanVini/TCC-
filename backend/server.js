@@ -117,6 +117,60 @@ app.post('/api/login', (req, res) => {
     }
 });
 
+const clienteLoginSchema = Joi.object({
+    nome: Joi.string().trim().min(2).max(100).allow('', null),
+    telefone: Joi.string().trim().min(8).max(20).required(),
+    email: Joi.string().trim().email({ tlds: { allow: false } }).max(100).required()
+});
+
+app.post('/api/clientes/login', async (req, res) => {
+    const { error } = clienteLoginSchema.validate(req.body);
+    if (error) return res.status(400).json({ error: error.details[0].message });
+
+    const { nome, telefone, email } = req.body;
+    const conn = await pool.getConnection();
+    try {
+        await conn.beginTransaction();
+
+        const [emailMatch] = await conn.execute('SELECT * FROM clientes WHERE email = ?', [email]);
+        const [phoneMatch] = await conn.execute('SELECT * FROM clientes WHERE telefone = ?', [telefone]);
+
+        let cliente = null;
+        if (emailMatch.length > 0) {
+            cliente = emailMatch[0];
+        } else if (phoneMatch.length > 0) {
+            cliente = phoneMatch[0];
+        }
+
+        if (cliente) {
+            const updatedNome = nome && nome.trim().length > 0 ? nome.trim() : cliente.nome;
+            const updatedEmail = cliente.email && cliente.email.trim().length > 0 ? cliente.email.trim() : email.trim();
+            await conn.execute(
+                'UPDATE clientes SET nome = ?, telefone = ?, email = ? WHERE id = ?',
+                [updatedNome, telefone.trim(), updatedEmail, cliente.id]
+            );
+            const [rows] = await conn.execute('SELECT * FROM clientes WHERE id = ?', [cliente.id]);
+            cliente = rows[0];
+        } else {
+            const [result] = await conn.execute(
+                'INSERT INTO clientes (nome, telefone, email, observacoes) VALUES (?, ?, ?, ?)',
+                [nome.trim(), telefone.trim(), email.trim(), '']
+            );
+            const [rows] = await conn.execute('SELECT * FROM clientes WHERE id = ?', [result.insertId]);
+            cliente = rows[0];
+        }
+
+        await conn.commit();
+        res.json(cliente);
+    } catch (err) {
+        await conn.rollback();
+        console.error('Erro em /api/clientes/login:', err);
+        res.status(500).json({ error: 'Erro interno ao autenticar cliente.' });
+    } finally {
+        conn.release();
+    }
+});
+
 app.get('/api/clientes', async (req, res) => {
     try {
         const [rows] = await pool.execute('SELECT * FROM clientes ORDER BY nome');
