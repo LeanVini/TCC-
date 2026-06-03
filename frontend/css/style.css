@@ -181,38 +181,6 @@ nav {
 
 .service-desc { margin-top: 0.4rem; color: var(--muted); }
 
-.agenda {
-    padding: 3rem 0;
-}
-
-.agenda-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.4rem;
-    align-items: start;
-}
-
-.agenda-list {
-    background: #fff;
-    border-radius: var(--radius);
-    border: 1px solid rgba(212, 175, 55, 0.18);
-    box-shadow: var(--shadow-light);
-    padding: 1rem;
-}
-
-.agenda-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.14);
-}
-
-.agenda-item:last-child { border-bottom: none; }
-
-.agenda-time { font-weight: 700; color: var(--primary-dark); }
-
-.agenda-client { color: var(--text); }
-
 .cta-secondary {
     display: inline-block;
     background: rgba(212, 175, 55, 0.15);
@@ -414,6 +382,15 @@ footer {
 .message-box.message-info {
     background: rgba(212, 175, 55, 0.14);
     border-color: rgba(212, 175, 55, 0.35);
+}
+
+.message-box.message-success {
+    background: rgba(56, 161, 105, 0.15);
+    border-color: rgba(56, 161, 105, 0.4);
+    color: #1f5a38;
+    box-shadow: 0 8px 24px rgba(31, 90, 56, 0.12);
+    width: auto;
+    margin: 1.5rem auto;
 }
 
 .login-page {

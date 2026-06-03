@@ -120,7 +120,6 @@ const renderClientes = (clientes = [], searchTerm = '') => {
     `;
     tbody.appendChild(tr);
   });
-<<<<<<< HEAD
 };
 
 // Form handling
@@ -231,52 +230,3 @@ document.addEventListener('DOMContentLoaded', () => {
   loadClientes();
 });
 
-=======
-}
-
-function adicionarCliente(event) {
-  event.preventDefault();
-
-  const nomeInput = document.getElementById("nome");
-  const telefoneInput = document.getElementById("telefone");
-  const emailInput = document.getElementById("email");
-
-  const novoCliente = {
-    id: Date.now(),
-    nome: nomeInput.value.trim(),
-    telefone: telefoneInput.value.trim(),
-    email: emailInput.value.trim(),
-  };
-
-  if (!novoCliente.nome) {
-    nomeInput.focus();
-    return;
-  }
-
-  const clientes = getClientes();
-  clientes.push(novoCliente);
-  saveClientes(clientes);
-  renderClientes();
-
-  document.getElementById("formCliente").reset();
-  nomeInput.focus();
-}
-
-function handleTableClick(event) {
-  if (!event.target.matches("button.btn-remover")) return;
-  const id = Number(event.target.dataset.id);
-  if (!id) return;
-
-  const clientes = getClientes().filter((c) => c.id !== id);
-  saveClientes(clientes);
-  renderClientes();
-}
-
-function init() {
-  document.getElementById("formCliente").addEventListener("submit", adicionarCliente);
-  document.querySelector("#listaClientes tbody").addEventListener("click", handleTableClick);
-  renderClientes();
-}
-
-document.addEventListener("DOMContentLoaded", init);
->>>>>>> 7a42470e9cbd13f0240a3c6cbbdb5217bda6277d

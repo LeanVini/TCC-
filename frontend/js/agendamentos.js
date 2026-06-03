@@ -213,7 +213,7 @@ if (form) {
             form.reset();
             agendamentoId.value = '';
             prefillClientFields();
-            showMessage(isEdit ? 'Agendamento atualizado com sucesso!' : 'Agendamento enviado com sucesso!', 'info');
+            showMessage(isEdit ? 'Agendamento atualizado com sucesso!' : 'Agendamento enviado com sucesso!', 'success');
             carregarAgendamentos();
         } catch (err) {
             console.error('Erro ao salvar agendamento:', err);
