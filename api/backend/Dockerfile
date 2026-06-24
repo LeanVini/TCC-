@@ -2,14 +2,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache bash \
+RUN apk add --no-cache bash curl \
     && addgroup -S appgroup \
-    && adduser -S appuser -G appgroup \
-    && mkdir -p /app
+    && adduser -S appuser -G appgroup
 
 COPY package*.json ./
 
-RUN npm install --only=production && npm cache clean --force
+RUN npm install --only=production \
+    && npm cache clean --force
 
 COPY . .
 RUN chown -R appuser:appgroup /app
